@@ -14,6 +14,8 @@ SPDX-FileCopyrightText: 2021 Robin Vobruba <hoijui.quaero@gmail.com>
 SPDX-License-Identifier: CC0-1.0
 -->
 
+A fork of the project to use in my own stuff, since the original does not (yet) have a release without Log4Shell
+
 ## Status
 
 [![License](
