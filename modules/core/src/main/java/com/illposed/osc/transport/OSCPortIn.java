@@ -5,15 +5,10 @@
 
 package com.illposed.osc.transport;
 
-import com.illposed.osc.OSCBadDataEvent;
-import com.illposed.osc.OSCPacket;
-import com.illposed.osc.OSCPacketDispatcher;
-import com.illposed.osc.OSCPacketEvent;
-import com.illposed.osc.OSCPacketListener;
-import com.illposed.osc.OSCParseException;
-import com.illposed.osc.OSCSerializerAndParserBuilder;
+import com.illposed.osc.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -61,7 +56,7 @@ public class OSCPortIn extends OSCPort implements Runnable {
 	public static OSCPacketDispatcher getDispatcher(
 			final List<OSCPacketListener> listeners)
 	{
-		return listeners.stream()
+		return listeners == null ? null : listeners.stream()
 				.filter(OSCPacketDispatcher.class::isInstance)
 				.findFirst()
 				.map(OSCPacketDispatcher.class::cast)
@@ -209,7 +204,7 @@ public class OSCPortIn extends OSCPort implements Runnable {
 	private void stopListening(final Exception exception) {
 
 		// TODO This implies a low-level problem (for example network IO), but it could just aswell be a high-level one (for example a parse exception)
-		final String errorMsg = "Error while listening on " + toString() + "...";
+		final String errorMsg = "Error while listening on " + this + "...";
 		log.error(errorMsg);
 		if (exception instanceof OSCParseException) {
 			log.error(errorMsg);
