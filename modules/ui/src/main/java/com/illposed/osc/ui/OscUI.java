@@ -48,12 +48,10 @@ public class OscUI extends JPanel {
 	// declare some variables
 	private final JFrame parent;
 	private JTextField addressWidget;
-	private JLabel portWidget;
 	private JTextField textBox;
 	private JTextField textBox2;
 	private JTextField textBox3;
 	private JTextField textBox4 = new JTextField(String.valueOf(1000), 8);
-	private JLabel delayLabel;
 
 	private JButton firstSynthButtonOn, secondSynthButtonOn, thirdSynthButtonOn;
 	private JButton firstSynthButtonOff, secondSynthButtonOff, thirdSynthButtonOff;
@@ -101,18 +99,15 @@ public class OscUI extends JPanel {
 		// variable setAddressButton holds an insatnce of JButton with
 		// a "Set Address" argument for its screen name
 		final JButton setAddressButton = new JButton("Set Address");
-		setAddressButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(final ActionEvent evt) {
-				// perform the addressChanged method when action is received
-				addressChanged();
-			}
+		setAddressButton.addActionListener(evt -> {
+			// perform the addressChanged method when action is received
+			addressChanged();
 		});
 
 		// variable portWidget holds an instance of JLabel with the OSCPortOut
 		// as the text it looks like OSCPortOut has a method to get the default
 		// SuperCollider port
-		portWidget = new JLabel(Integer.toString(OSCPort.defaultSCOSCPort()));
+		JLabel portWidget = new JLabel(Integer.toString(OSCPort.defaultSCOSCPort()));
 
 		portWidget.setForeground(new Color(255, 255, 255));
 		final JLabel portLabel = new JLabel("Port");
@@ -137,7 +132,7 @@ public class OscUI extends JPanel {
 		final JButton globalOffButton = new JButton("All Off");
 		final JButton globalOnButton = new JButton("All On");
 		textBox4 = new JTextField(String.valueOf(1000), 8);
-		delayLabel = new JLabel("All Off delay in ms");
+		JLabel delayLabel = new JLabel("All Off delay in ms");
 		delayLabel.setForeground(new Color(255, 255, 255));
 		globalControlPanel.setBackground(new Color(13, 53, 0));
 

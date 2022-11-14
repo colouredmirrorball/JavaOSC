@@ -16,10 +16,10 @@ SPDX-License-Identifier: CC0-1.0
 		<project.build.encoding>UTF-8</project.build.encoding>
 		<project.build.sourceEncoding>${project.build.encoding}</project.build.sourceEncoding>
 		<project.build.resourceEncoding>${project.build.encoding}</project.build.resourceEncoding>
-		<java.old.version>8</java.old.version>
-		<java.old.home>${env.JAVA_8_HOME}</java.old.home>
 		<!-- NOTE This works for reactor/aggregation & child module builds. -->
 		<root.basedir>${project.basedir}/../parent</root.basedir>
+		<maven.compiler.source>18</maven.compiler.source>
+		<maven.compiler.target>18</maven.compiler.target>
 	</properties>
 
 	<groupId>com.illposed.osc</groupId>
@@ -123,7 +123,7 @@ SPDX-License-Identifier: CC0-1.0
 					<aggregate>true</aggregate>
 					<linkXRef>true</linkXRef>
 					<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-					<targetJdk>1.${java.old.version}</targetJdk>
+					<targetJdk>18</targetJdk>
 					<rulesets>
 						<ruleset>${root.basedir}/src/main/resources/pmd.xml</ruleset>
 					</rulesets>
@@ -164,8 +164,8 @@ SPDX-License-Identifier: CC0-1.0
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.7.0</version>
 					<configuration>
-						<source>1.${java.old.version}</source>
-						<target>1.${java.old.version}</target>
+						<source>18</source>
+						<target>18</target>
 						<encoding>${project.build.sourceEncoding}</encoding>
 						<showDeprecation>true</showDeprecation>
 						<compilerArgument>-Xlint:unchecked</compilerArgument>
@@ -305,9 +305,6 @@ SPDX-License-Identifier: CC0-1.0
 									<requireMavenVersion>
 										<version>3.0.5</version>
 									</requireMavenVersion>
-									<requireJavaVersion>
-										<version>1.${java.old.version}</version>
-									</requireJavaVersion>
 									<requireSameVersions>
 										<dependencies>
 											<!-- All artifacts with this groupID need to have the same version -->
@@ -352,7 +349,7 @@ SPDX-License-Identifier: CC0-1.0
 						<aggregate>true</aggregate>
 						<linkXRef>true</linkXRef>
 						<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-						<targetJdk>1.${java.old.version}</targetJdk>
+						<targetJdk>18</targetJdk>
 						<rulesets>
 							<ruleset>${root.basedir}/src/main/resources/pmd.xml</ruleset>
 						</rulesets>
@@ -608,41 +605,6 @@ SPDX-License-Identifier: CC0-1.0
 								</goals>
 							</execution>
 						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>compileWithOldJava</id>
-			<!--
-				NOTE
-				Make sure to set the environment variable JAVA${VERSION}_HOME
-				to your old JDK HOME when using this profile.
-				For example: JAVA6_HOME=.../jdk1.6.0_00
-				Also set the Maven properties:
-				* 'java.old.version' (for example: '6')
-				* 'java.old.home' (for example: '${env.JAVA6_HOME}')
-			-->
-			<properties>
-				<java.old.libs>${java.old.home}/jre/lib</java.old.libs>
-				<java.old.bootclasspath>${java.old.libs}/rt.jar${path.separator}${java.old.libs}/jce.jar</java.old.bootclasspath>
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<configuration>
-							<source>1.${java.old.version}</source>
-							<target>1.${java.old.version}</target>
-							<encoding>${project.build.sourceEncoding}</encoding>
-							<showDeprecation>true</showDeprecation>
-							<compilerArgument>-Xlint:unchecked</compilerArgument>
-							<compilerArguments>
-								<bootclasspath>${java.old.bootclasspath}</bootclasspath>
-							</compilerArguments>
-						</configuration>
 					</plugin>
 				</plugins>
 			</build>

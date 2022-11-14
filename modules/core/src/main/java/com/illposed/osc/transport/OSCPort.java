@@ -36,28 +36,23 @@ public class OSCPort {
 		throws IOException
 	{
 		switch (protocol) {
-			case UDP:
-				this.transport = new UDPTransport(local, remote, serializerAndParserBuilder);
-				break;
-			case TCP:
+			case UDP -> this.transport = new UDPTransport(local, remote, serializerAndParserBuilder);
+			case TCP -> {
 				if (!((local instanceof InetSocketAddress)
-							&& (remote instanceof InetSocketAddress)))
-				{
+						&& (remote instanceof InetSocketAddress))) {
 					throw new IllegalArgumentException(
-						"Only InetSocketAddress is supported for TCP transport."
+							"Only InetSocketAddress is supported for TCP transport."
 					);
 				}
-
 				this.transport = new TCPTransport(
-					(InetSocketAddress)local,
-					(InetSocketAddress)remote,
-					serializerAndParserBuilder
+						(InetSocketAddress) local,
+						(InetSocketAddress) remote,
+						serializerAndParserBuilder
 				);
-				break;
-			default:
-				throw new IllegalArgumentException(
+			}
+			default -> throw new IllegalArgumentException(
 					"Unexpected NetworkProtocol: " + protocol
-				);
+			);
 		}
 	}
 

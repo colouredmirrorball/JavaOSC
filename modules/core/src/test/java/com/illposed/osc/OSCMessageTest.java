@@ -363,7 +363,7 @@ public class OSCMessageTest {
 
 	/**
 	 * See the comment in
-	 * {@link OSCSerializerTest#testPrintFloat2OnStream}.
+	 * .
 	 */
 	@Test
 	public void testIncreaseVolume() {
