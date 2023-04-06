@@ -5,18 +5,6 @@
 
 package com.illposed.osc.transport;
 
-import com.illposed.osc.OSCBundle;
-import com.illposed.osc.OSCMessage;
-import com.illposed.osc.OSCMessageTest;
-import com.illposed.osc.OSCPacket;
-import com.illposed.osc.OSCPacketListener;
-import com.illposed.osc.OSCSerializeException;
-import com.illposed.osc.SimpleOSCMessageListener;
-import com.illposed.osc.SimpleOSCPacketListener;
-import com.illposed.osc.argument.OSCTimeTag64;
-import com.illposed.osc.messageselector.OSCPatternAddressMessageSelector;
-import com.illposed.osc.transport.tcp.TCPTransport;
-
 import java.io.IOException;
 import java.net.Inet6Address;
 import java.net.InetAddress;
@@ -29,12 +17,11 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.concurrent.TimeoutException;
-import java.util.function.BooleanSupplier;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeoutException;
+import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
-
 import java.util.stream.Stream;
 
 import org.junit.After;
@@ -44,6 +31,18 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.illposed.osc.OSCBundle;
+import com.illposed.osc.OSCMessage;
+import com.illposed.osc.OSCMessageTest;
+import com.illposed.osc.OSCPacket;
+import com.illposed.osc.OSCPacketListener;
+import com.illposed.osc.OSCSerializeException;
+import com.illposed.osc.SimpleOSCMessageListener;
+import com.illposed.osc.SimpleOSCPacketListener;
+import com.illposed.osc.argument.OSCTimeTag64;
+import com.illposed.osc.messageselector.OSCPatternAddressMessageSelector;
+import com.illposed.osc.transport.tcp.TCPTransport;
 
 public class OSCPortTest {
 
@@ -338,7 +337,7 @@ public class OSCPortTest {
 				100,
 				timeout,
 				"Message was not received.",
-				() -> listener.isMessageReceived()
+			listener::isMessageReceived
 		);
 	}
 
@@ -348,7 +347,7 @@ public class OSCPortTest {
 				100,
 				timeout,
 				failMessage,
-				() -> listener.isMessageReceived()
+			listener::isMessageReceived
 		);
 	}
 
@@ -358,7 +357,7 @@ public class OSCPortTest {
 				100,
 				timeout,
 				"Packet was not received.",
-				() -> listener.isMessageReceived()
+			listener::isMessageReceived
 		);
 	}
 
@@ -368,7 +367,7 @@ public class OSCPortTest {
 				100,
 				timeout,
 				failMessage,
-				() -> listener.isMessageReceived()
+			listener::isMessageReceived
 		);
 	}
 
