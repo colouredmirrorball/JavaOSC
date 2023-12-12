@@ -102,7 +102,7 @@ or on
 <dependency>
 	<groupId>com.illposed.osc</groupId>
 	<artifactId>javaosc-core</artifactId>
-	<version>0.7</version>
+	<version>0.8</version>
 </dependency>
 ```
 
