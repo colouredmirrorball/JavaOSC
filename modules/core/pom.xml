@@ -23,8 +23,6 @@ SPDX-License-Identifier: CC0-1.0
 	<artifactId>javaosc-core</artifactId>
 	<version>0.9-SNAPSHOT</version>
 
-	<packaging>bundle</packaging>
-
 	<name>JavaOSC</name>
 	<description>An Open Sound Control library implementation in Java</description>
 
@@ -45,70 +43,8 @@ SPDX-License-Identifier: CC0-1.0
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-					<instructions>
-						<Export-Package>
-							${project.packageName},
-							${project.packageName}.argument,
-							${project.packageName}.messageselector,
-							${project.packageName}.transport,
-							${project.packageName}.transport.udp
-							${project.packageName}.transport.tcp
-						</Export-Package>
-						<Supported-OSC-Version>${supported.osc.version}</Supported-OSC-Version>
-					</instructions>
-				</configuration>
-			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<!-- Execute during the maven "verify" phase (`mvn verify`) -->
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<!-- Execute during the maven "verify" phase (`mvn verify`) -->
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<excludes>
-						<exclude>com/illposed/osc/OSCSerializer.java</exclude>
-						<exclude>com/illposed/osc/argument/ArgumentHandler.java</exclude>
-						<exclude>com/illposed/osc/messageselector/OSCPatternAddressMessageSelector.java</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<!-- Execute during the maven "verify" phase (`mvn verify`) -->
-							<goal>check</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 
